@@ -1,0 +1,12 @@
+{
+  "id":"./",
+  "name":"What's Happening?",
+  "short_name":"Happening?",
+  "description":"Make a day of it. Discover one reason to celebrate every day.",
+  "start_url":"./",
+  "scope":"./",
+  "display":"standalone",
+  "background_color":"#f5f2ff",
+  "theme_color":"#f5f2ff",
+  "icons":[{"src":"./assets/icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any"}]
+}
