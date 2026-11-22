@@ -1,6 +1,6 @@
 # Android build and signing
 
-Package: `uk.co.nicole.whatshappening` · version 0.3.0 / code 2 · minimum API 26 · target/compile API 35.
+Package: `uk.co.nicole.whatshappening` · version 0.3.0 / code 3 · minimum API 26 · target/compile API 35.
 
 The project builds with Python 3, Node.js, Java with the `jdk.compiler` module, and the official Android SDK 35 platform/build tools. It does not need Gradle or third-party Android dependencies.
 
