@@ -2,7 +2,7 @@
   "id":"./",
   "name":"What's Happening?",
   "short_name":"Happening?",
-  "description":"Make a day of it. Discover one reason to celebrate every day.",
+  "description":"Make a day of it. Discover celebrations, observances and little reasons to enjoy each day.",
   "start_url":"./",
   "scope":"./",
   "display":"standalone",

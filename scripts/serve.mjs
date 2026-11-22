@@ -6,7 +6,7 @@ const args=process.argv.slice(2);
 const flag=name=>args[args.indexOf(name)+1];
 const port=Number(args.includes('--port')?flag('--port'):process.env.PORT)||3000;
 const host=args.includes('--host')?flag('--host'):'0.0.0.0';
-const types={'.html':'text/html','.css':'text/css','.js':'text/javascript','.mjs':'text/javascript','.json':'application/json','.webmanifest':'application/manifest+json','.svg':'image/svg+xml','.jpg':'image/jpeg','.woff2':'font/woff2'};
+const types={'.html':'text/html','.css':'text/css','.js':'text/javascript','.mjs':'text/javascript','.json':'application/json','.webmanifest':'application/manifest+json','.svg':'image/svg+xml','.jpg':'image/jpeg','.woff2':'font/woff2','.ttf':'font/ttf'};
 createServer(async(req,res)=>{
   try {
     const pathname=decodeURIComponent(new URL(req.url,'http://localhost').pathname);

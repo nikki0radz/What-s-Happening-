@@ -23,4 +23,24 @@ All photos below were downloaded from Unsplash for this design draft and are bun
 | `cupcake.jpg` | [Unsplash source image](https://images.unsplash.com/photo-1486427944299-d1955d23e34d) |
 | `cards.jpg` | [Unsplash source image](https://images.unsplash.com/photo-1511193311914-0346f16efe90) |
 
-Photos are resized to 1100px wide and compressed at download. Some themes share a photograph while the design is being reviewed. Display type: Bricolage Grotesque. Body type: DM Sans, loaded from Google Fonts with local/system fallbacks.
+Photos are resized to 1100px wide and compressed at download. Some themes share a photograph while the design is being reviewed. Display type: Bricolage Grotesque. Body type: DM Sans. Both fonts are bundled for offline use; their SIL Open Font License notices are in assets/fonts/.
+
+## November and expanded-calendar additions
+
+| File | Source |
+| --- | --- |
+| `coffee.jpg` | [Unsplash source image](https://images.unsplash.com/photo-1509042239860-f550ce710b93) |
+| `bread.jpg` | [Unsplash source image](https://images.unsplash.com/photo-1509440159596-0249088772ff) |
+| `space.jpg` | [Unsplash source image](https://images.unsplash.com/photo-1519681393784-d120267933ba) |
+| `ocean.jpg` | [Unsplash source image](https://images.unsplash.com/photo-1518837695005-2083093ee35b) |
+| `books.jpg` | [Unsplash source image](https://images.unsplash.com/photo-1506784983877-45594efa4cbe) |
+| `music.jpg` | [Unsplash source image](https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f) |
+| `vegan.jpg` | [Unsplash source image](https://images.unsplash.com/photo-1540189549336-e6e99c3679fe) |
+| `sandwich.jpg` | [Unsplash source image](https://images.unsplash.com/photo-1528735602780-2552fd46c7af) |
+| `pizza.jpg` | [Unsplash source image](https://images.unsplash.com/photo-1513104890138-7c749659a591) |
+| `pastry.jpg` | [Unsplash source image](https://images.unsplash.com/photo-1509365465985-25d11c17e812) |
+| `autumn.jpg` | [Unsplash source image](https://images.unsplash.com/photo-1472396961693-142e6e269027) |
+| `hanukkah.jpg` | [Alla Kemelmakher](https://unsplash.com/photos/YejDFFvDuc0) |
+| `diwali.jpg` | [Ashwini Chaudhary](https://unsplash.com/photos/O971R1OH4RU) |
+| `cheetah.jpg` | [Yuval Levy](https://unsplash.com/photos/vkNjEy8zYFI) |
+| `bonfire.jpg` | [Lennert De Ryck](https://unsplash.com/photos/zuYVmsUgIrw) |

@@ -1,3 +1,9 @@
 node_modules/
 .DS_Store
 qa-mobile.html
+research/
+android/build/
+signing/
+*.apk
+*.jks
+*.keystore
