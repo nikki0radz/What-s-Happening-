@@ -96,8 +96,8 @@ public final class MainActivity extends Activity {
         if (request == EXPORT_REQUEST && result == RESULT_OK && data != null && data.getData() != null && calendarExport != null) {
             try (OutputStream output = getContentResolver().openOutputStream(data.getData())) {
                 output.write(calendarExport.getBytes(StandardCharsets.UTF_8));
-                Toast.makeText(this, "Calendar file saved", Toast.LENGTH_SHORT).show();
-            } catch (IOException exception) { Toast.makeText(this, "Could not save calendar", Toast.LENGTH_LONG).show(); }
+                Toast.makeText(this, "File saved", Toast.LENGTH_SHORT).show();
+            } catch (IOException exception) { Toast.makeText(this, "Could not save file", Toast.LENGTH_LONG).show(); }
         }
         calendarExport = null;
     }
@@ -145,6 +145,14 @@ public final class MainActivity extends Activity {
         }
         @JavascriptInterface public void testNotification() { ReminderScheduler.test(MainActivity.this); }
         @JavascriptInterface public void openExternal(String url) { runOnUiThread(() -> MainActivity.this.openExternal(url)); }
+        @JavascriptInterface public void exportDesignComments(String content, String filename) {
+            if (content == null || content.length() > 4000000) return;
+            try {
+                if (!"whats-happening.design-review/v1".equals(new JSONObject(content).optString("schema"))) return;
+            } catch (JSONException ignored) { return; }
+            final String name = filename != null && filename.matches("whats-happening-design-notes-[0-9-]+\\.json") ? filename : "whats-happening-design-notes.json";
+            runOnUiThread(() -> { calendarExport = content; startActivityForResult(new Intent(Intent.ACTION_CREATE_DOCUMENT).setType("application/json").addCategory(Intent.CATEGORY_OPENABLE).putExtra(Intent.EXTRA_TITLE, name), EXPORT_REQUEST); });
+        }
         @JavascriptInterface public void exportCalendar(String content) {
             if (content == null || content.length() > 500000 || !content.startsWith("BEGIN:VCALENDAR")) return;
             runOnUiThread(() -> { calendarExport = content; startActivityForResult(new Intent(Intent.ACTION_CREATE_DOCUMENT).setType("text/calendar").addCategory(Intent.CATEGORY_OPENABLE).putExtra(Intent.EXTRA_TITLE, "my-days-november-december-2026.ics"), EXPORT_REQUEST); });

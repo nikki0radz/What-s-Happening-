@@ -1,13 +1,13 @@
 {
   "name": "whats-happening",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "node scripts/serve.mjs",
     "start": "node scripts/serve.mjs",
     "test": "node --test",
-    "check": "node --check app.js && node --check calendar-data.js && node --check reminders.js && node --check sw.js",
+    "check": "node --check app.js && node --check design-review.js && node --check calendar-data.js && node --check reminders.js && node --check sw.js",
     "build": "node scripts/build-web.mjs",
     "android:build": "python3 scripts/build-android.py"
   }

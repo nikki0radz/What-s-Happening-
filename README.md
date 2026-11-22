@@ -2,10 +2,11 @@
 
 **Make a day of it.** An Android calendar app with daily discoveries and reminders, plus a matching [web preview](https://nikki0radz.github.io/What-s-Happening-/).
 
-Version **0.2.0** includes **216 events across November and December 2026**, with three to five events on every date. The approved lilac/lime design and stock-photo style are retained.
+Version **0.3.0** includes **216 events across November and December 2026**, with three to five events on every date. The approved lilac/lime design and stock-photo style are retained.
 
 ## In the app
 
+- **Design mode:** toggle the top slider to pause controls and animations, then tap any element to comment. Scrolling stays available. Notes are stored locally, can be edited/deleted, and export to JSON with selectors, text, styles and screen context. Turn the mode off to navigate, then on again to review another screen. Android uses the system file saver.
 - **Today:** the actual local date, an event picker, a featured event and everything else happening that day.
 - **Calendar:** November/December navigation, month grid, grouped event list, search and all events for a selected date.
 - **My Days:** save individual events, including several on the same date. Original December web bookmarks are preserved.
@@ -17,7 +18,7 @@ Multi-day festivals appear at their start, with the range explained in the detai
 
 ## Install and check notifications
 
-Install the supplied signed `Whats-Happening-0.2.0.apk` on Android 8 or newer. In the app, press **Turn on** and allow notifications.
+Install the supplied signed `Whats-Happening-0.3.0.apk` on Android 8 or newer. In the app, press **Turn on** and allow notifications.
 
 Open the bell settings and choose **Try a reminder in 10 seconds**. You can close the app before the test notification arrives. The optional **Allow precise reminder times** setting lets Android deliver scheduled reminders more precisely; without it Android may delay an alert.
 

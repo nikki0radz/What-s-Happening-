@@ -41,7 +41,7 @@ for name in ['aapt2', 'd8', 'zipalign', 'apksigner']:
     executable.chmod(executable.stat().st_mode | 0o111)
 
 web = BUILD / 'assets/web'
-for name in ['index.html','styles.css','app.js','calendar-data.js','december-base.js','icons.js','reminders.js','manifest.webmanifest']:
+for name in ['index.html','styles.css','app.js','design-review.js','design-review.css','calendar-data.js','december-base.js','icons.js','reminders.js','manifest.webmanifest']:
     shutil.copy2(ROOT / name, web / name)
 shutil.copytree(ROOT / 'assets', web / 'assets')
 catalogue = subprocess.check_output(['node', '--input-type=module', '-e',
@@ -52,7 +52,7 @@ run(TOOLS / 'aapt2', 'compile', '--dir', ROOT / 'android/res', '-o', BUILD / 're
 run(TOOLS / 'aapt2', 'link', '-o', BUILD / 'base.apk', '-I', ANDROID_JAR,
     '--manifest', ROOT / 'android/AndroidManifest.xml', '-A', BUILD / 'assets',
     '--java', BUILD / 'generated', '--min-sdk-version', '26', '--target-sdk-version', '35',
-    '--version-code', '2', '--version-name', '0.2.0', BUILD / 'resources.zip')
+    '--version-code', '3', '--version-name', '0.3.0', BUILD / 'resources.zip')
 sources = sorted((ROOT / 'android/src').rglob('*.java')) + sorted((BUILD / 'generated').rglob('*.java'))
 run('java', '-m', 'jdk.compiler/com.sun.tools.javac.Main', '-source', '8', '-target', '8',
     '-classpath', ANDROID_JAR, '-encoding', 'UTF-8', '-d', BUILD / 'classes', *sources)
@@ -77,7 +77,7 @@ if not key.exists():
 if not password.exists():
     raise SystemExit('The private signing password file is missing; restore the signing backup.')
 
-apk = BUILD / 'Whats-Happening-0.2.0.apk'
+apk = BUILD / 'Whats-Happening-0.3.0.apk'
 run(TOOLS / 'apksigner', 'sign', '--ks', key, '--ks-key-alias', 'happening',
     '--ks-pass', 'file:' + str(password),
     '--out', apk, BUILD / 'aligned.apk')
