@@ -67,7 +67,7 @@ function context(){return {
   calendarMonth:document.querySelector('.month-navigation h2')?.textContent||null,
   viewport:{width:innerWidth,height:innerHeight,pixelRatio:devicePixelRatio},
   scroll:{x:Math.round(scrollX),y:Math.round(scrollY)},
-  platform:typeof window.AndroidBridge==='object'?'android':'web',appVersion:'0.4.0'
+  platform:typeof window.AndroidBridge==='object'?'android':'web',appVersion:'0.5.0'
 };}
 function candidate(target){
   if(!(target instanceof Element))return null;

@@ -2,15 +2,17 @@
 
 **Make a day of it.** An Android calendar app with daily discoveries and reminders, plus a matching [web preview](https://nikki0radz.github.io/What-s-Happening-/).
 
-Version **0.4.0** includes **216 events across November and December 2026**, with three to five events on every date. The approved lilac/lime design and stock-photo style are retained.
+Version **0.5.0** includes **215 events across November and December 2026**, with two to five events on every date. The lilac/lime design is retained, with the 28 exported review notes applied. The source research checked all 216 original entries; 215 remain in these months after one organiser-confirmed move to January.
 
 ## In the app
 
 - **Design mode:** toggle the top slider to pause controls and animations, then tap any element to comment. Scrolling stays available. Notes are stored locally, can be edited/deleted, and export to JSON with selectors, text, styles and screen context. Turn the mode off to navigate, then on again to review another screen. Android uses the system file saver.
-- **Today:** the actual local date, an event picker, a featured event and everything else happening that day.
-- **Calendar:** November/December navigation, month grid, grouped event list, search and all events for a selected date.
+- **Today:** the local date, a smaller featured title, one photo bookmark, a purple “Tell me more” action and a practical activity inside the card. The rest of today’s events appear before upcoming dates.
+- **Calendar:** defaults to the month grid, with clear top-right counts, grouped list/search, all events for a selected date and month navigation at both ends.
+- **Design choices:** Settings offers ten date-badge styles and ten event-count styles. Choices apply immediately and persist locally.
+- **Event sheets:** researched background, practical links and independently checked date sources live inside the app. Every event has a distinct image with author/source/licence credits.
 - **My Days:** save individual events, including several on the same date. Original December web bookmarks are preserved.
-- **Updates:** checks on launch/resume (at most once per 15 minutes), with **Check for updates** in the bell settings and About screen. New releases show a download banner. APK downloads use the browser; Android asks the user to install the update. Installed data stays in place. Offline check failures do not block the app.
+- **Updates:** checks on launch/resume (at most once per 15 minutes), with **Check for updates** in Settings and About. New releases show a download banner. APK downloads use the browser; Android asks the user to install the update. Installed data stays in place. Offline check failures do not block the app.
 - **Android reminders:** a daily round-up, plus an extra reminder for each saved event. Times are adjustable and use the phone’s time zone.
 - **Offline:** Android includes its catalogue, photographs and fonts. No account, tracking or paid API is required.
 - **Calendar export:** optionally save selected events as an ICS file with alarms.
@@ -19,9 +21,9 @@ Multi-day festivals appear at their start, with the range explained in the detai
 
 ## Install and check notifications
 
-Install the supplied signed `Whats-Happening-0.4.0.apk` (also available from the web About screen) on Android 8 or newer. In the app, press **Turn on** and allow notifications.
+Install the supplied signed `Whats-Happening-0.5.0.apk` (also available from the web About screen) on Android 8 or newer. In the app, press **Turn on** and allow notifications.
 
-Open the bell settings and choose **Try a reminder in 10 seconds**. You can close the app before the test notification arrives. The optional **Allow precise reminder times** setting lets Android deliver scheduled reminders more precisely; without it Android may delay an alert.
+Open Settings and choose **Try a reminder in 10 seconds**. You can close the app before the test notification arrives. The optional **Allow precise reminder times** setting lets Android deliver scheduled reminders more precisely; without it Android may delay an alert.
 
 Normal background use does not require keeping the app open. Android **Force stop** pauses reminders until the app is reopened. The app restores schedules after a restart, update or time-zone change. Notification taps open the relevant date or saved event.
 
@@ -51,6 +53,6 @@ The signed APK and `app-update.json` are published together on GitHub Pages. Aft
 
 See [Android build instructions](docs/ANDROID-BUILD.md). The Android shell uses a bundled WebView interface and native AlarmManager notifications. It never loads remote pages into the privileged WebView; external reference links open in the browser.
 
-Validation includes eight JavaScript tests, twenty-two update-policy checks, eleven JVM scheduling checks (including time-zone and DST cases), Android compilation, packaged asset checks and APK signature verification. The interface was checked in desktop and 390px browser previews. **Physical-device/emulator notification delivery has not been tested in this environment**; use the in-app ten-second test after installing.
+Validation includes eleven JavaScript tests, twenty-two update-policy checks, eleven JVM scheduling checks (including time-zone and DST cases), Android compilation, packaged asset checks and APK signature verification. The interface was checked in desktop and 384px phone browser previews. **Physical-device/emulator notification delivery has not been tested in this environment**; use the in-app ten-second test after installing.
 
-See [content sources](docs/CONTENT-SOURCES.md) and [photo/font credits](PHOTO-CREDITS.md). The descriptions are original and photos are illustrative; related events sometimes share an image. This project is not affiliated with Days Of The Year.
+See [content sources](docs/CONTENT-SOURCES.md) and [photo/font credits](PHOTO-CREDITS.md). The descriptions are original; every event has a distinct illustrative photograph. This project is not affiliated with Days Of The Year.

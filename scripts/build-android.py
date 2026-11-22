@@ -46,7 +46,7 @@ for name in ['aapt2', 'd8', 'zipalign', 'apksigner']:
     executable.chmod(executable.stat().st_mode | 0o111)
 
 web = BUILD / 'assets/web'
-for name in ['index.html','styles.css','app.js','design-review.js','design-review.css','updates.js','calendar-data.js','december-base.js','icons.js','reminders.js','manifest.webmanifest']:
+for name in ['index.html','styles.css','app.js','appearance.js','appearance.css','event-details.js','event-photos.js','design-review.js','design-review.css','updates.js','calendar-data.js','december-base.js','icons.js','reminders.js','manifest.webmanifest']:
     shutil.copy2(ROOT / name, web / name)
 shutil.copytree(ROOT / 'assets', web / 'assets')
 catalogue = subprocess.check_output(['node', '--input-type=module', '-e',
@@ -100,7 +100,7 @@ release = {
     'versionCode': VERSION_CODE, 'versionName': VERSION, 'minSdk': MIN_SDK,
     'apkUrl': f'https://nikki0radz.github.io/What-s-Happening-/downloads/{apk.name}',
     'sizeBytes': apk.stat().st_size, 'sha256': hashlib.sha256(apk.read_bytes()).hexdigest(),
-    'releaseNotes': 'Automatic update checks, a manual update checker in settings, and Design mode with JSON comment export.'
+    'releaseNotes': 'Cleaner Today and calendar layouts, ten date-badge styles, ten count styles, researched event sheets and unique credited images.'
 }
 (ROOT / 'app-update.json').write_text(json.dumps(release, indent=2) + '\n')
 print('Prepared the versioned APK download and app-update.json for publication.')

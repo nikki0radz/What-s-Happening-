@@ -1,21 +1,20 @@
-# November–December 2026 content
+# November–December 2026: researched event sheets
 
-Catalogue checked 22 November 2026. There are 120 November events and 96 December events. This is a curated selection, not a claim to include every observance worldwide.
+All 216 original entries were researched on 22 November 2026. **215 appear in the current calendar: 119 in November and 96 in December**, with two to five entries per date. National Illustration Day is omitted from these months because its organiser moved the next event to January 2027.
 
-Each event has an individual `source` URL in `calendar-data.js` or the preserved December catalogue. All descriptions and suggested activities are original editorial copy. Informal food and hobby days are distinguished from official observances and public holidays.
+`event-details.js` contains original summaries, informative sections, practical activities, and the exact sources for every entry. Each record distinguishes organiser/official-source date evidence from independently corroborated informal-calendar dates. Sources are also available in the event sheet’s **Sources & date check** section. No event sheet relies on Days Of The Year as its confirming date source.
 
-## Date references
+Primary references include the UN, UNESCO, FAO, WHO, government holiday calendars, event organisers, cultural institutions, conservation organisations and religious-calendar authorities. National Day Calendar and other independent calendars help corroborate informal food/hobby days. An informal calendar listing is not presented as a government holiday or a universally observed event. Summaries and background sections are original editorial writing, not scraped articles.
 
-- [Days Of The Year, November 2026](https://www.daysoftheyear.com/days/nov/2026/) and [December 2026](https://www.daysoftheyear.com/days/dec/2026/), with daily pages for the selected entries. Month pages are a discovery index; moving dates are checked separately.
-- [United Nations observance list](https://www.un.org/en/observances/list-days-weeks) for international days.
-- [GOV.UK bank holidays](https://www.gov.uk/bank-holidays) for St Andrew’s Day and the Boxing Day substitute holiday.
-- [High Commission of India, London, 2026 holidays](https://www.hcilondon.gov.in/page/list-of-the-holidays/) for Diwali on 8 November and Guru Nanak’s birthday on 24 November.
-- [Hebcal Hanukkah 2026](https://www.hebcal.com/holidays/chanukah-2026): sundown 4 December through nightfall 12 December. The start is listed once.
-- [Royal British Legion](https://www.britishlegion.org.uk/get-involved/events/remembrance-events/remembrance-sunday) for Remembrance Sunday.
-- [Anti-Bullying Alliance](https://anti-bullyingalliance.org.uk/anti-bullying-week-2026/odd-socks-day): Odd Socks Day on 16 November 2026.
-- [BBC Children in Need](https://www.bbcchildreninneed.co.uk/schools/faq/): appeal day on 13 November 2026.
-- [Save the Children](https://www.savethechildren.org.uk/christmas-jumper-day/about/faq): Christmas Jumper Day on 10 December 2026.
-- [Thailand government festival information](https://www.thailand.go.th/public/useful-information-detail/celebrate-loy-krathong-across-thailand-on-24-november-under-the-full-moon): Loy Krathong on 24 November 2026. This corrects the aggregator’s conflicting 25 November listing.
-- [December solstice](https://www.timeanddate.com/holidays/seasons/december-solstice): 21 December 2026. The description distinguishes Northern Hemisphere winter from Southern Hemisphere summer.
+## Corrections and qualifications
 
-Multi-day cultural celebrations are listed at their beginning, with date ranges in their descriptions. Local and community customs can differ. Future years require new date verification rather than copying this calendar forward.
+- **National Illustration Day:** the Quentin Blake Centre for Illustration explicitly moved its next edition to **22 January 2027**. The previous 27 November 2026 entry is omitted. Reference: https://qbcentre.org.uk/national-illustration-day
+- **National Re-Gifting Day:** the visible date is **24 December 2026**, following the Thursday-before-Christmas rule and explicit 2026 listings. Some other calendars and older organiser material use the third Thursday (17 December). The sheet explains the disagreement. References: https://www.moneymanagement.org/blog/happy-national-regifting-day and https://www.checkiday.com/a86bbe475ba34a43483fdab24c2e90cd/national-regifting-day
+- **Kekri:** retained as a clearly labelled seasonal Finnish feature on 7 November, supported by local events; it does not have a universal fixed date. Local dates vary across the harvest season.
+- **Hanukkah:** one entry at sundown on **4 December**, with the range through nightfall **12 December** explained in the sheet. https://www.hebcal.com/holidays/chanukah-2026
+- **Loy Krathong:** **24 November 2026**, using the Thai government’s festival reference. https://www.thailand.go.th/public/useful-information-detail/celebrate-loy-krathong-across-thailand-on-24-november-under-the-full-moon
+- **Boxing Day:** the cultural date remains 26 December; its UK substitute bank holiday is separately listed on 28 December. https://www.gov.uk/bank-holidays
+- Name clarifications include Eat Smart Day, Origami Day (distinct from the longer World Origami Days campaign), America Recycles Day, and World Arabic Language Day.
+- Jólabókaflóð is a wider book season; the Christmas Eve reading custom is the feature shown on 24 December. Games Day is an informal anniversary, not a promise of a 2026 convention. Informal days with uncertain origins do not acquire invented founders or histories.
+
+The content is a curated 2026 calendar, not an automatically repeating annual schedule. Multi-day festivals appear at their start and describe their full range. Community and regional variations are explained where relevant.

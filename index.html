@@ -9,17 +9,17 @@
   <link rel="icon" href="./assets/icon.svg" type="image/svg+xml">
   <link rel="manifest" href="./manifest.webmanifest">
   <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./appearance.css">
   <script type="module" src="./app.js"></script>
 </head>
 <body>
   <div class="app-shell">
     <header class="app-header">
       <a href="#today" class="brand" aria-label="What's Happening home"><span class="brand-mark" aria-hidden="true">✳</span><span>what’s<br>happening<span class="brand-question">?</span></span></a>
-      <button class="icon-button settings-button" aria-label="Notification settings" data-action="settings"></button>
+      <button class="icon-button settings-button" aria-label="Settings" data-action="settings"></button>
     </header>
     <main id="main" tabindex="-1"></main>
     <nav class="bottom-nav" aria-label="Main navigation"></nav>
-    <footer class="app-footer">A little reason to make a big thing of today. <button data-action="about">About this draft</button></footer>
   </div>
   <dialog id="detail-dialog" aria-labelledby="dialog-title"></dialog>
   <dialog id="settings-dialog" aria-labelledby="settings-title"></dialog>

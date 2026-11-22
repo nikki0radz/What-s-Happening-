@@ -1,10 +1,10 @@
 {
   "packageName": "uk.co.nicole.whatshappening",
-  "versionCode": 4,
-  "versionName": "0.4.0",
+  "versionCode": 5,
+  "versionName": "0.5.0",
   "minSdk": 26,
-  "apkUrl": "https://nikki0radz.github.io/What-s-Happening-/downloads/Whats-Happening-0.4.0.apk",
-  "sizeBytes": 6697718,
-  "sha256": "aecb948cd901463bde4ffe18c9237152b30d1429ef8877051bd6ce40bf97dc2b",
-  "releaseNotes": "Automatic update checks, a manual update checker in settings, and Design mode with JSON comment export."
+  "apkUrl": "https://nikki0radz.github.io/What-s-Happening-/downloads/Whats-Happening-0.5.0.apk",
+  "sizeBytes": 12287823,
+  "sha256": "35362b28e93b46531a2aa693f7f17c333b3a26e7550e354d61b1a1d806b8e4d0",
+  "releaseNotes": "Cleaner Today and calendar layouts, ten date-badge styles, ten count styles, researched event sheets and unique credited images."
 }

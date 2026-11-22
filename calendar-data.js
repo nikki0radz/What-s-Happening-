@@ -1,3 +1,5 @@
+import {eventDetails} from './event-details.js';
+import {eventPhotos} from './event-photos.js';
 import {days as originalDecember} from './december-base.js';
 const categories={F:'Food & drink',N:'Animals & nature',P:'People & purpose',C:'Culture & traditions',Q:'Curious & creative'};
 // Original editorial copy. The catalogue covers actual dates in 2026, not annual recurrence.
@@ -211,7 +213,10 @@ const extra=rows.map((line,index)=>{
 });
 // Keep the December prototype IDs so existing bookmarks continue to work.
 const old=originalDecember.map(event=>({...event,date:event.id,month:'2026-12',source:sources[event.title]||event.source,verifiedOn:'2026-11-22'}));
-export const events=[...old,...extra].sort((a,b)=>a.date.localeCompare(b.date));
+export const events=[...old,...extra].map(event=>{
+  const details=eventDetails[event.id],photo=eventPhotos[event.id],date=details?.date||event.date;
+  return {...event,date,day:Number(date.slice(8)),month:date.slice(0,7),title:details?.title||event.title,aliases:details?.title&&details.title!==event.title?[event.title]:[],scope:event.title==='Kekri'?'Finland · harvest season; local dates vary':event.scope,description:details?.summary||event.description,idea:details?.activity?.text||event.idea,details,source:details?.sources?.find(source=>source.dateEvidence)?.url||details?.sources?.[0]?.url||event.source,...(photo?{image:photo.image,imageAlt:photo.alt,photoCredit:photo.credit}:{})};
+}).filter(event=>['2026-11','2026-12'].includes(event.month)).sort((a,b)=>a.date.localeCompare(b.date));
 export const days=[...new Set(events.map(event=>event.date))].sort().map(date=>({id:date,date,day:Number(date.slice(8)),month:date.slice(0,7),events:events.filter(event=>event.date===date)}));
 export const months=['2026-11','2026-12'];
 export const byId=id=>events.find(event=>event.id===id);
