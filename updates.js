@@ -1,7 +1,7 @@
-import {esc} from './icons.js?v=0.5.0';
+import {esc} from './icons.js?v=0.6.0';
 
 const supported=typeof window.AndroidBridge?.getUpdateStatus==='function';
-const version='0.5.0';
+const version='0.6.0';
 function state(){try{return JSON.parse(AndroidBridge.getUpdateStatus());}catch{return {};}}
 function checkedAt(value){return value?`Last checked ${new Date(value).toLocaleString(undefined,{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'})}.`:'';}
 function contents(){

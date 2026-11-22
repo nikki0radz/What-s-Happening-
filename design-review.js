@@ -1,4 +1,4 @@
-import {esc} from './icons.js?v=0.5.0';
+import {esc} from './icons.js?v=0.6.0';
 
 const KEY='wh-design-comments-v1';
 const SCHEMA='whats-happening.design-review/v1';
@@ -7,7 +7,7 @@ try{const stored=JSON.parse(localStorage.getItem(KEY));if(Array.isArray(stored))
 let enabled=false,selected=null,editing=null,returnFocus=null;
 const host=document.createElement('div');host.id='design-review';
 const root=host.attachShadow({mode:'open'});
-root.innerHTML=`<link rel="stylesheet" href="./design-review.css?v=0.5.0">
+root.innerHTML=`<link rel="stylesheet" href="./design-review.css?v=0.6.0">
   <section class="toolbar" aria-label="Design review">
     <div class="bar"><label class="toggle"><input id="mode" type="checkbox" role="switch" aria-label="Design mode"><span class="track"></span><strong>Design mode</strong></label><button id="review" class="quiet">Notes <span id="count">0</span></button><button id="export">Export JSON</button></div>
     <p id="hint" class="hint" hidden>Tap anything to comment. Scroll to explore.</p>
@@ -67,7 +67,7 @@ function context(){return {
   calendarMonth:document.querySelector('.month-navigation h2')?.textContent||null,
   viewport:{width:innerWidth,height:innerHeight,pixelRatio:devicePixelRatio},
   scroll:{x:Math.round(scrollX),y:Math.round(scrollY)},
-  platform:typeof window.AndroidBridge==='object'?'android':'web',appVersion:'0.5.0'
+  platform:typeof window.AndroidBridge==='object'?'android':'web',appVersion:'0.6.0'
 };}
 function candidate(target){
   if(!(target instanceof Element))return null;

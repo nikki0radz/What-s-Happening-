@@ -1,6 +1,6 @@
-import {eventDetails} from './event-details.js?v=0.5.0';
-import {eventPhotos} from './event-photos.js?v=0.5.0';
-import {days as originalDecember} from './december-base.js?v=0.5.0';
+import {eventDetails} from './event-details.js?v=0.6.0';
+import {eventPhotos} from './event-photos.js?v=0.6.0';
+import {days as originalDecember} from './december-base.js?v=0.6.0';
 const categories={F:'Food & drink',N:'Animals & nature',P:'People & purpose',C:'Culture & traditions',Q:'Curious & creative'};
 // Original editorial copy. The catalogue covers actual dates in 2026, not annual recurrence.
 const rows=`

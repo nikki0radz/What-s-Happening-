@@ -9,5 +9,5 @@
     <item name="android:windowBackground">#F5F2FF</item>
     <item name="android:colorAccent">#7752D8</item>
   </style>
-  <color name="launcher_background">#7752D8</color>
+  <color name="launcher_background">#F5F2FF</color>
 </resources>

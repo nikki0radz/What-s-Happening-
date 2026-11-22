@@ -2,7 +2,7 @@ import {readdir,readFile,writeFile} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {resolve,relative} from 'node:path';
 const root=resolve(import.meta.dirname,'..');
-const files=['index.html','styles.css','app.js','appearance.js','appearance.css','event-details.js','event-photos.js','design-review.js','design-review.css','updates.js','calendar-data.js','december-base.js','icons.js','reminders.js','manifest.webmanifest','sw.js'];
+const files=['index.html','styles.css','app.js','appearance.js','appearance.css','section-designs.js','section-designs.css','daily-facts.js','event-details.js','event-photos.js','design-review.js','design-review.css','updates.js','calendar-data.js','december-base.js','icons.js','reminders.js','manifest.webmanifest','sw.js'];
 const release=JSON.parse(await readFile(resolve(root,'package.json'),'utf8')).version;
 // Version browser imports as well as the worker cache: a fresh HTML page must not use old HTTP-cached modules.
 for(const file of files.filter(file=>file==='index.html'||(file.endsWith('.js')&&file!=='sw.js'))){

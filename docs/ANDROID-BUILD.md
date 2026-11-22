@@ -1,6 +1,6 @@
 # Android build and signing
 
-Package: `uk.co.nicole.whatshappening` · version 0.5.0 / code 5 · minimum API 26 · target/compile API 35.
+Package: `uk.co.nicole.whatshappening` · version 0.6.0 / code 6 · minimum API 26 · target/compile API 35.
 
 The project builds with Python 3, Node.js, Java with the `jdk.compiler` module, and the official Android SDK 35 platform/build tools. It does not need Gradle or third-party Android dependencies.
 
@@ -13,7 +13,7 @@ npm test
 
 For a nonstandard SDK layout, set `ANDROID_JAR` to the SDK platform’s `android.jar` and `ANDROID_BUILD_TOOLS` to the directory containing `aapt2`, `d8`, `zipalign` and `apksigner`.
 
-The output is `android/build/Whats-Happening-0.5.0.apk`. The build compiles resources and Java, converts bytecode with D8, aligns the package, signs it and verifies the signature. Catalogue data is generated from the same module used by the web app, so event IDs match across native reminders and the interface.
+The output is `android/build/Whats-Happening-0.6.0.apk`. The build compiles resources and Java, converts bytecode with D8, aligns the package, signs it and verifies the signature. Catalogue data is generated from the same module used by the web app, so event IDs match across native reminders and the interface.
 
 ## Keep the signing identity
 

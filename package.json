@@ -1,18 +1,18 @@
 {
   "name": "whats-happening",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "node scripts/serve.mjs",
     "start": "node scripts/serve.mjs",
     "test": "node --test",
-    "check": "node --check app.js && node --check design-review.js && node --check updates.js && node --check appearance.js && node --check event-details.js && node --check event-photos.js && node --check calendar-data.js && node --check reminders.js && node --check sw.js",
+    "check": "node --check app.js && node --check design-review.js && node --check updates.js && node --check appearance.js && node --check event-details.js && node --check event-photos.js && node --check calendar-data.js && node --check reminders.js && node --check sw.js && node --check section-designs.js && node --check daily-facts.js",
     "build": "node scripts/build-web.mjs",
     "android:build": "python3 scripts/build-android.py"
   },
   "android": {
-    "versionCode": 5,
+    "versionCode": 6,
     "minSdk": 26
   }
 }

@@ -1,10 +1,10 @@
 {
   "packageName": "uk.co.nicole.whatshappening",
-  "versionCode": 5,
-  "versionName": "0.5.0",
+  "versionCode": 6,
+  "versionName": "0.6.0",
   "minSdk": 26,
-  "apkUrl": "https://nikki0radz.github.io/What-s-Happening-/downloads/Whats-Happening-0.5.0.apk",
-  "sizeBytes": 12287823,
-  "sha256": "681c88d3c95c4dbc24b407b79065b1a5f87f1bfed0cbf5a722875e6e0175624d",
-  "releaseNotes": "Cleaner Today and calendar layouts, ten date-badge styles, ten count styles, researched event sheets and unique credited images."
+  "apkUrl": "https://nikki0radz.github.io/What-s-Happening-/downloads/Whats-Happening-0.6.0.apk",
+  "sizeBytes": 12423376,
+  "sha256": "7db252ba109a7d735756b9f7f0a09c60d95b356a27e1070095590495746c4c88",
+  "releaseNotes": "New globe logo, chosen date styles, numbered layout choices above each section, left-aligned Tell me more and a sourced daily random fact."
 }

@@ -46,9 +46,13 @@ for name in ['aapt2', 'd8', 'zipalign', 'apksigner']:
     executable.chmod(executable.stat().st_mode | 0o111)
 
 web = BUILD / 'assets/web'
-for name in ['index.html','styles.css','app.js','appearance.js','appearance.css','event-details.js','event-photos.js','design-review.js','design-review.css','updates.js','calendar-data.js','december-base.js','icons.js','reminders.js','manifest.webmanifest']:
+for name in ['index.html','styles.css','app.js','appearance.js','appearance.css','section-designs.js','section-designs.css','daily-facts.js','event-details.js','event-photos.js','design-review.js','design-review.css','updates.js','calendar-data.js','december-base.js','icons.js','reminders.js','manifest.webmanifest']:
     shutil.copy2(ROOT / name, web / name)
-shutil.copytree(ROOT / 'assets', web / 'assets')
+# The Android WebView uses the 192px header icon; retain the larger PWA icon on the web.
+shutil.copytree(ROOT / 'assets', web / 'assets', ignore=shutil.ignore_patterns('icon-512.png'))
+native_manifest = json.loads((web / 'manifest.webmanifest').read_text())
+native_manifest['icons'] = [item for item in native_manifest['icons'] if item['sizes'] == '192x192']
+(web / 'manifest.webmanifest').write_text(json.dumps(native_manifest, ensure_ascii=False, indent=2) + '\n')
 catalogue = subprocess.check_output(['node', '--input-type=module', '-e',
     "import {events} from './calendar-data.js'; process.stdout.write(JSON.stringify(events.map(({id,date,title,category})=>({id,date,title,category}))));"], cwd=ROOT)
 (BUILD / 'assets/catalogue.json').write_bytes(catalogue)
@@ -100,7 +104,7 @@ release = {
     'versionCode': VERSION_CODE, 'versionName': VERSION, 'minSdk': MIN_SDK,
     'apkUrl': f'https://nikki0radz.github.io/What-s-Happening-/downloads/{apk.name}',
     'sizeBytes': apk.stat().st_size, 'sha256': hashlib.sha256(apk.read_bytes()).hexdigest(),
-    'releaseNotes': 'Cleaner Today and calendar layouts, ten date-badge styles, ten count styles, researched event sheets and unique credited images.'
+    'releaseNotes': 'New globe logo, chosen date styles, numbered layout choices above each section, left-aligned Tell me more and a sourced daily random fact.'
 }
 (ROOT / 'app-update.json').write_text(json.dumps(release, indent=2) + '\n')
 print('Prepared the versioned APK download and app-update.json for publication.')
