@@ -22,12 +22,14 @@ public final class MainActivity extends Activity {
     private static final String ORIGIN = "https://appassets.androidplatform.net";
     private static final int NOTIFICATION_REQUEST = 41, EXPORT_REQUEST = 42;
     private WebView web;
+    private UpdateChecker updater;
     private boolean ready;
     private String pendingEvent, calendarExport;
 
     @Override public void onCreate(Bundle state) {
         super.onCreate(state);
         ReminderScheduler.createChannel(this);
+        updater = new UpdateChecker(this, this::updateAppStatus);
         pendingEvent = getIntent().getStringExtra("event");
         FrameLayout root = new FrameLayout(this); root.setBackgroundColor(0xFFF5F2FF);
         web = new WebView(this); root.addView(web, new FrameLayout.LayoutParams(-1, -1)); setContentView(root);
@@ -64,7 +66,7 @@ public final class MainActivity extends Activity {
                 openExternal(request.getUrl().toString()); return true;
             }
             @Override public void onPageFinished(WebView view, String url) {
-                ready = true; updateStatus(); dispatchEvent();
+                ready = true; updateStatus(); updateAppStatus(); dispatchEvent();
             }
         });
         web.loadUrl(ORIGIN + "/assets/index.html");
@@ -72,7 +74,9 @@ public final class MainActivity extends Activity {
     private WebResourceResponse blocked() {
         return new WebResourceResponse("text/plain", "UTF-8", 403, "Blocked", Collections.emptyMap(), new ByteArrayInputStream(new byte[0]));
     }
-    @Override protected void onResume() { super.onResume(); ReminderScheduler.reschedule(this); updateStatus(); }
+    @Override protected void onResume() { super.onResume(); ReminderScheduler.reschedule(this); updateStatus(); if (updater != null) updater.check(false); }
+    @Override protected void onDestroy() { if (updater != null) updater.close(); if (web != null) web.destroy(); super.onDestroy(); }
+    private void updateAppStatus() { if (web != null && ready) web.evaluateJavascript("window.onNativeUpdate && window.onNativeUpdate()", null); }
     @Override protected void onNewIntent(Intent intent) { super.onNewIntent(intent); setIntent(intent); pendingEvent = intent.getStringExtra("event"); dispatchEvent(); }
     private void dispatchEvent() {
         if (ready && pendingEvent != null) { String id = pendingEvent; pendingEvent = null; web.evaluateJavascript("window.openNativeEvent && window.openNativeEvent(" + JSONObject.quote(id) + ")", null); }
@@ -102,6 +106,9 @@ public final class MainActivity extends Activity {
         calendarExport = null;
     }
     public final class Bridge {
+        @JavascriptInterface public String getUpdateStatus() { return updater.state(); }
+        @JavascriptInterface public void checkForUpdates() { runOnUiThread(() -> updater.check(true)); }
+        @JavascriptInterface public void downloadUpdate() { runOnUiThread(() -> updater.download()); }
         @JavascriptInterface public String getState() {
             JSONObject state = new JSONObject();
             try { state.put("initialized", ReminderScheduler.prefs(MainActivity.this).getBoolean("initialized", false)); state.put("settings", ReminderScheduler.settings(MainActivity.this)); state.put("saved", new JSONArray(ReminderScheduler.saved(MainActivity.this))); }

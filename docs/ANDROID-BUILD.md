@@ -1,6 +1,6 @@
 # Android build and signing
 
-Package: `uk.co.nicole.whatshappening` · version 0.3.0 / code 3 · minimum API 26 · target/compile API 35.
+Package: `uk.co.nicole.whatshappening` · version 0.4.0 / code 4 · minimum API 26 · target/compile API 35.
 
 The project builds with Python 3, Node.js, Java with the `jdk.compiler` module, and the official Android SDK 35 platform/build tools. It does not need Gradle or third-party Android dependencies.
 
@@ -13,7 +13,7 @@ npm run android:build
 
 For a nonstandard SDK layout, set `ANDROID_JAR` to the SDK platform’s `android.jar` and `ANDROID_BUILD_TOOLS` to the directory containing `aapt2`, `d8`, `zipalign` and `apksigner`.
 
-The output is `android/build/Whats-Happening-0.3.0.apk`. The build compiles resources and Java, converts bytecode with D8, aligns the package, signs it and verifies the signature. Catalogue data is generated from the same module used by the web app, so event IDs match across native reminders and the interface.
+The output is `android/build/Whats-Happening-0.4.0.apk`. The build compiles resources and Java, converts bytecode with D8, aligns the package, signs it and verifies the signature. Catalogue data is generated from the same module used by the web app, so event IDs match across native reminders and the interface.
 
 ## Keep the signing identity
 
@@ -39,3 +39,15 @@ The native bridge is exposed only to bundled content under a private HTTPS asset
 Compile `android/src/uk/co/nicole/whatshappening/AlarmPlan.java` and `android/tests/AlarmPlanTest.java` with Java, then run `uk.co.nicole.whatshappening.AlarmPlanTest`. These cover future occurrences, already delivered dates, time-zone conversion, the catalogue’s end, invalid times, and daylight-saving gaps/overlaps.
 
 These host checks do not replace device tests for notification permissions, vendor battery restrictions, reboot restoration and tapping an actual notification.
+
+## Publish an Android update
+
+1. Increase `version` and `android.versionCode` in `package.json`; update the interface version labels and release notes.
+2. Build with the existing signing key. The build writes the signed APK under `downloads/` and regenerates `app-update.json` with its versioned URL, exact byte length and SHA-256.
+3. Publish both files in the same `main` commit and wait for GitHub Pages to finish. Keep older versioned downloads available.
+
+The native checker reads the HTTPS manifest on launch/resume, throttled to 15 minutes. A manual check bypasses the throttle. Requests have timeouts, no redirects, no HTTP cache reuse and a 16 KiB response limit. Only the expected package and the repository’s exact versioned APK path are accepted. Same/older versions never offer a downgrade; incompatible Android versions get a clear status. Network failures stay out of the automatic flow and can be retried from settings.
+
+The checker opens the approved APK URL in the system browser on **Download update**. Android handles the download and asks the user to install. It does not silently install or request privileged installer permissions. The manifest checksum supports release verification; this browser-download flow does not itself hash the downloaded APK. Android checks the signing identity when updating an existing install.
+
+`UpdatePolicyTest.java` exercises version comparison, timing, package/URL validation and incompatible devices without requiring an emulator. Network, browser download and installation still need a real-device check.

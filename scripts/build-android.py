@@ -6,6 +6,7 @@ ANDROID_HOME/platforms/android-35 and ANDROID_HOME/build-tools/35.0.0 are used.
 Signing material is generated once in WH_SIGNING_DIR (default: signing/), and
 must be backed up privately to keep future updates installable over this build.
 """
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -15,6 +16,10 @@ import subprocess
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
+PACKAGE = json.loads((ROOT / 'package.json').read_text())
+VERSION = PACKAGE['version']
+VERSION_CODE = PACKAGE['android']['versionCode']
+MIN_SDK = PACKAGE['android']['minSdk']
 SDK = Path(os.environ.get('ANDROID_HOME', str(ROOT.parent / 'android-tools')))
 ANDROID_JAR = Path(os.environ.get('ANDROID_JAR', str(SDK / 'platforms/android-35/android.jar')))
 TOOLS = Path(os.environ.get('ANDROID_BUILD_TOOLS', str(SDK / 'build-tools/35.0.0')))
@@ -41,7 +46,7 @@ for name in ['aapt2', 'd8', 'zipalign', 'apksigner']:
     executable.chmod(executable.stat().st_mode | 0o111)
 
 web = BUILD / 'assets/web'
-for name in ['index.html','styles.css','app.js','design-review.js','design-review.css','calendar-data.js','december-base.js','icons.js','reminders.js','manifest.webmanifest']:
+for name in ['index.html','styles.css','app.js','design-review.js','design-review.css','updates.js','calendar-data.js','december-base.js','icons.js','reminders.js','manifest.webmanifest']:
     shutil.copy2(ROOT / name, web / name)
 shutil.copytree(ROOT / 'assets', web / 'assets')
 catalogue = subprocess.check_output(['node', '--input-type=module', '-e',
@@ -51,13 +56,13 @@ catalogue = subprocess.check_output(['node', '--input-type=module', '-e',
 run(TOOLS / 'aapt2', 'compile', '--dir', ROOT / 'android/res', '-o', BUILD / 'resources.zip')
 run(TOOLS / 'aapt2', 'link', '-o', BUILD / 'base.apk', '-I', ANDROID_JAR,
     '--manifest', ROOT / 'android/AndroidManifest.xml', '-A', BUILD / 'assets',
-    '--java', BUILD / 'generated', '--min-sdk-version', '26', '--target-sdk-version', '35',
-    '--version-code', '3', '--version-name', '0.3.0', BUILD / 'resources.zip')
+    '--java', BUILD / 'generated', '--min-sdk-version', str(MIN_SDK), '--target-sdk-version', '35',
+    '--version-code', str(VERSION_CODE), '--version-name', VERSION, BUILD / 'resources.zip')
 sources = sorted((ROOT / 'android/src').rglob('*.java')) + sorted((BUILD / 'generated').rglob('*.java'))
 run('java', '-m', 'jdk.compiler/com.sun.tools.javac.Main', '-source', '8', '-target', '8',
     '-classpath', ANDROID_JAR, '-encoding', 'UTF-8', '-d', BUILD / 'classes', *sources)
 classes = sorted((BUILD / 'classes').rglob('*.class'))
-run(TOOLS / 'd8', '--lib', ANDROID_JAR, '--min-api', '26', '--output', BUILD / 'dex', *classes)
+run(TOOLS / 'd8', '--lib', ANDROID_JAR, '--min-api', str(MIN_SDK), '--output', BUILD / 'dex', *classes)
 with zipfile.ZipFile(BUILD / 'base.apk', 'a', compression=zipfile.ZIP_DEFLATED) as archive:
     for dex in sorted((BUILD / 'dex').glob('*.dex')):
         archive.write(dex, dex.name)
@@ -77,10 +82,25 @@ if not key.exists():
 if not password.exists():
     raise SystemExit('The private signing password file is missing; restore the signing backup.')
 
-apk = BUILD / 'Whats-Happening-0.3.0.apk'
+apk = BUILD / f'Whats-Happening-{VERSION}.apk'
 run(TOOLS / 'apksigner', 'sign', '--ks', key, '--ks-key-alias', 'happening',
     '--ks-pass', 'file:' + str(password),
     '--out', apk, BUILD / 'aligned.apk')
 run(TOOLS / 'apksigner', 'verify', '--verbose', '--print-certs', apk)
 run(TOOLS / 'aapt2', 'dump', 'badging', apk)
 print(json.dumps({'apk': str(apk), 'events': len(json.loads(catalogue)), 'bytes': apk.stat().st_size}))
+
+# Publish these two files together in the same Pages commit. The APK URL is
+# versioned so a phone cannot download an older APK from a CDN cache.
+downloads = ROOT / 'downloads'
+downloads.mkdir(exist_ok=True)
+shutil.copy2(apk, downloads / apk.name)
+release = {
+    'packageName': 'uk.co.nicole.whatshappening',
+    'versionCode': VERSION_CODE, 'versionName': VERSION, 'minSdk': MIN_SDK,
+    'apkUrl': f'https://nikki0radz.github.io/What-s-Happening-/downloads/{apk.name}',
+    'sizeBytes': apk.stat().st_size, 'sha256': hashlib.sha256(apk.read_bytes()).hexdigest(),
+    'releaseNotes': 'Automatic update checks, a manual update checker in settings, and Design mode with JSON comment export.'
+}
+(ROOT / 'app-update.json').write_text(json.dumps(release, indent=2) + '\n')
+print('Prepared the versioned APK download and app-update.json for publication.')

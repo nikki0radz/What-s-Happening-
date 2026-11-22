@@ -7,3 +7,6 @@ signing/
 *.apk
 *.jks
 *.keystore
+
+# Published, signed Android releases are required by the update checker.
+!downloads/*.apk
