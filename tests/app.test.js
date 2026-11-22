@@ -53,6 +53,17 @@ test('offline manifest contains the new catalogue, fonts and every listed file',
   const files=JSON.parse(source.match(/HAPPENING_FILES=(.*);/)[1]);
   assert.ok(files.includes('./calendar-data.js'));assert.ok(files.some(file=>file.endsWith('.ttf')));
   for(const file of files)if(file!=='./')await access(new URL('../'+file,import.meta.url));
+  const release=JSON.parse(await readFile(new URL('../package.json',import.meta.url),'utf8')).version;
+  const html=await readFile(new URL('../index.html',import.meta.url),'utf8');
+  const entryAssets=[...html.matchAll(/(?:src|href)="(\.\/[^"]+\.(?:js|css)\?v=[^"]+)"/g)].map(match=>match[1]);
+  assert.ok(entryAssets.length>=3);
+  for(const asset of entryAssets){assert.ok(files.includes(asset),asset);assert.equal(new URL(asset,'https://app.test/').searchParams.get('v'),release);}
+  for(const file of files.filter(file=>file.endsWith('.js')&&!file.endsWith('sw.js')&&!file.endsWith('cache-files.js'))){
+    const module=await readFile(new URL('../'+file,import.meta.url),'utf8');
+    for(const match of module.matchAll(/(?:from|import)\s*['"](\.\/[^'"]+\.js[^'"]*)['"]/g)){
+      assert.equal(new URL(match[1],'https://app.test/').searchParams.get('v'),release,match[1]);assert.ok(files.includes(match[1]),match[1]);
+    }
+  }
 });
 
 test('every visible event has an original in-app information sheet and independently sourced date',()=>{

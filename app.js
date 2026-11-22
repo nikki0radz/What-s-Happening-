@@ -1,9 +1,9 @@
-import './design-review.js';
-import {updatePanel} from './updates.js';
-import {dateBadge,countBadge,openAppearance,closeAppearance} from './appearance.js';
-import {events,days,months,byId,byDate,monthDays,dateLabel} from './calendar-data.js';
-import {localDateId,dueAlerts,makeCalendar} from './reminders.js';
-import {icon,esc} from './icons.js';
+import './design-review.js?v=0.5.0';
+import {updatePanel} from './updates.js?v=0.5.0';
+import {dateBadge,countBadge,openAppearance,closeAppearance} from './appearance.js?v=0.5.0';
+import {events,days,months,byId,byDate,monthDays,dateLabel} from './calendar-data.js?v=0.5.0';
+import {localDateId,dueAlerts,makeCalendar} from './reminders.js?v=0.5.0';
+import {icon,esc} from './icons.js?v=0.5.0';
 
 const native=typeof window.AndroidBridge?.syncState==='function';
 const defaults={daily:true,extra:true,dailyTime:'09:00',extraTime:'08:00'};
@@ -110,4 +110,4 @@ window.openNativeEvent=id=>{const event=byId(id);const day=event?.date||byDate(i
 window.handleNativeBack=()=>{if(window.DesignReview?.handleBack())return true;if(closeAppearance())return true;const open=[detail,document.querySelector('#about-dialog'),settingsDialog,dayDialog].find(dialog=>dialog.open);if(open){open.close();return true;}if(tab!=='today'){location.hash='today';return true;}return false;};
 document.addEventListener('appearancechange',render);
 route();syncNative();checkAlerts();if(!native)setInterval(checkAlerts,30000);
-if(!native&&'serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js').catch(()=>{});navigator.serviceWorker.addEventListener('message',event=>{if(event.data?.type==='OPEN_DAY')window.openNativeEvent(event.data.id);});}
+if(!native&&'serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js?v=0.5.0',{updateViaCache:'none'}).catch(()=>{});navigator.serviceWorker.addEventListener('message',event=>{if(event.data?.type==='OPEN_DAY')window.openNativeEvent(event.data.id);});}

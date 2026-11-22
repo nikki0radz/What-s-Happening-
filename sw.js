@@ -1,4 +1,4 @@
-importScripts('./cache-files.js?v=wh-calendar-3f7f8dd395fcd13d');
+importScripts('./cache-files.js?v=wh-calendar-89fa9da8ae8b5511');
 const CACHE=self.HAPPENING_VERSION;
 const ROOT=new URL('./',self.location.href);
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(self.HAPPENING_FILES.map(file=>new Request(file,{cache:'reload'})))).then(()=>self.skipWaiting())));

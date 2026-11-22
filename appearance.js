@@ -1,5 +1,5 @@
-import {esc,icon} from './icons.js';
-import {dateLabel} from './calendar-data.js';
+import {esc,icon} from './icons.js?v=0.5.0';
+import {dateLabel} from './calendar-data.js?v=0.5.0';
 
 const key='wh-appearance';
 const dateNames=['Sticker','Ticket','Desk calendar','Postmark','Luggage tag','Circle','Ribbon tab','Frosted glass','Pennant','Minimal'];

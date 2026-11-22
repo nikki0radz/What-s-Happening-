@@ -1,4 +1,4 @@
-import {esc} from './icons.js';
+import {esc} from './icons.js?v=0.5.0';
 
 const supported=typeof window.AndroidBridge?.getUpdateStatus==='function';
 const version='0.5.0';

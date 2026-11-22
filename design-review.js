@@ -1,4 +1,4 @@
-import {esc} from './icons.js';
+import {esc} from './icons.js?v=0.5.0';
 
 const KEY='wh-design-comments-v1';
 const SCHEMA='whats-happening.design-review/v1';
@@ -7,7 +7,7 @@ try{const stored=JSON.parse(localStorage.getItem(KEY));if(Array.isArray(stored))
 let enabled=false,selected=null,editing=null,returnFocus=null;
 const host=document.createElement('div');host.id='design-review';
 const root=host.attachShadow({mode:'open'});
-root.innerHTML=`<link rel="stylesheet" href="./design-review.css">
+root.innerHTML=`<link rel="stylesheet" href="./design-review.css?v=0.5.0">
   <section class="toolbar" aria-label="Design review">
     <div class="bar"><label class="toggle"><input id="mode" type="checkbox" role="switch" aria-label="Design mode"><span class="track"></span><strong>Design mode</strong></label><button id="review" class="quiet">Notes <span id="count">0</span></button><button id="export">Export JSON</button></div>
     <p id="hint" class="hint" hidden>Tap anything to comment. Scroll to explore.</p>
